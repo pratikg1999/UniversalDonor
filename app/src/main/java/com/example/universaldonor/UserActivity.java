@@ -1,9 +1,14 @@
 package com.example.universaldonor;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,14 +21,25 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class UserActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeUser.OnFragmentInteractionListener, Donors.OnFragmentInteractionListener{
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     FirebaseUser curUser;
+    FragmentManager fragmentManager;
+    DatabaseReference usersDatabase;
+    ArrayList<User> users = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +47,8 @@ public class UserActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         curUser  = mAuth.getCurrentUser();
+        usersDatabase = database.getReference("users");
+        fragmentManager = getSupportFragmentManager();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +69,27 @@ public class UserActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        final Query usersQuery = database.getReference("users").orderByChild("numDonations");
+        usersQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                users.clear();
+                for(DataSnapshot userSnapshot: dataSnapshot.getChildren()){
+                    Log.d("curuser", userSnapshot.getValue(User.class).getUserId());
+                    users.add(userSnapshot.getValue(User.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        HomeUser homeUser = HomeUser.newInstance();
+        fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeUser).commit();
+
     }
 
     @Override
@@ -96,23 +135,25 @@ public class UserActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        switch (id){
+            case R.id.nav_donors:
+                Donors donorsFragement = Donors.newInstance(users);
+                fragmentManager.beginTransaction().replace(R.id.content_main_relative, donorsFragement).commit();
+                break;
+            case R.id.nav_home:
+                HomeUser homeFragement = HomeUser.newInstance();
+                fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeFragement).commit();
+                break;
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
