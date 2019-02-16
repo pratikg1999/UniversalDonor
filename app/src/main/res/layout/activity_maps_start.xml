@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MapsStart">
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="startMaps"
-        android:text="start navigation"
-        app:layout_constraintStart_toStartOf="@+id/getBanksButton"
-        app:layout_constraintTop_toBottomOf="@+id/getBanksButton" />
-
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
@@ -40,9 +29,20 @@
         android:text="Get nearby hospitals"
         app:layout_constraintBottom_toTopOf="@+id/startButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bloodGroupSpinner" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startMaps"
+        android:text="show me in the maps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getBanksButton" />
 
     <EditText
         android:id="@+id/regionEditText"
@@ -54,6 +54,7 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/bloodGroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 

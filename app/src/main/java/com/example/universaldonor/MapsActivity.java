@@ -143,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng latLng =new LatLng(location.getLatitude(), location.getLongitude());
                 userMarker.setPosition(latLng);
                 if (flag) {
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                     flag = FALSE;
                 }
             }
