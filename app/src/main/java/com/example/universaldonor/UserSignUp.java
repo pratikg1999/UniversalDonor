@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -50,6 +51,8 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private OnFragmentInteractionListener mListener;
+    private String userId;
+    private DatabaseReference mref;
 
     public UserSignUp() {
         // Required empty public constructor
@@ -78,6 +81,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         FirebaseApp.initializeApp(getContext());
+        mref = database.getReference();
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
@@ -130,6 +134,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                             users.setValue(newuser);*/
                             //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
+                            userId = mAuth.getCurrentUser().getUid();
                             startActivity(new Intent(getContext(),MainActivity.class));
                         }
                         else{
