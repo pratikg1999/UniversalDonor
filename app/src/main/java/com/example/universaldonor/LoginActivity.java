@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class login extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button login;
     static EditText email;
@@ -38,7 +38,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         login = (Button) findViewById(R.id.login);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        signup = (TextView) findViewById(R.id.sign);
+        signup = (TextView) findViewById(R.id.signUpArea);
         progressDialog = new ProgressDialog(this);
 
 
@@ -73,14 +73,14 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            Toast.makeText(login.this,"Login sucessfull",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Login sucessfull",Toast.LENGTH_SHORT).show();
                             // start profile activity
                             finish();
-                            startActivity(new Intent(login.this,MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         }
                         else{
                             String errorMessage = task.getException().getMessage();
-                            Toast.makeText(login.this, errorMessage, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
