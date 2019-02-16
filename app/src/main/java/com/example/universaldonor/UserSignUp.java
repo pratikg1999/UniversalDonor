@@ -25,6 +25,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -135,7 +138,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             userId = mAuth.getCurrentUser().getUid();
-                            User newUser = new User("", userId, "",0,0,0,"",21.86579,82.65382,957632140);
+                            User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), null);
                             usersDatabase.child(userId).setValue(newUser);
                             startActivity(new Intent(getContext(),MainActivity.class));
                         }
