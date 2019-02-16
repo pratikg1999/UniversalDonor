@@ -4,22 +4,48 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <!--<item-->
+            <!--android:id="@+id/nav_camera"-->
+            <!--android:icon="@drawable/ic_menu_camera"-->
+            <!--android:title="Import" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_gallery"-->
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+            <!--android:title="Gallery" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_slideshow"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="Slideshow" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Tools" />-->
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/home"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_donors"
+            android:title="Donors"
+            android:icon="@drawable/home"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Blood Banks"
+            android:id="@+id/nav_blood_banks"
+            android:icon="@drawable/ic_menu_camera"/>
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_history"
+            android:title="Donation History"
+            android:icon="@drawable/home"/>
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:title="Leaderboard"
+            android:icon="@drawable/home"/>
+        <item
+            android:id="@+id/nav_requests"
+            android:title="Requests"
+            android:icon="@drawable/home"/>
+
+
     </group>
 
     <item android:title="Communicate">

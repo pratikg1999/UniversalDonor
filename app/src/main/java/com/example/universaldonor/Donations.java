@@ -1,6 +1,6 @@
 package com.example.universaldonor;
 
-import java.text.DateFormat;
+
 import java.util.Date;
 
 public class Donations {
@@ -9,9 +9,9 @@ public class Donations {
     private String bloodBankId;
     private String bloodType;
     private long amountOfBlood;
-    private DateFormat dateDonated;
+    private Date dateDonated;
 
-    public Donations(String userId, String bloodBankId, String bloodType, long amountOfBlood, DateFormat dateDonated) {
+    public Donations(String userId, String bloodBankId, String bloodType, long amountOfBlood, Date dateDonated) {
         this.userId = userId;
         this.bloodBankId = bloodBankId;
         this.bloodType = bloodType;
@@ -38,7 +38,7 @@ public class Donations {
         return amountOfBlood;
     }
 
-    public DateFormat getDateDonated() {
+    public Date getDateDonated() {
         return dateDonated;
     }
 }

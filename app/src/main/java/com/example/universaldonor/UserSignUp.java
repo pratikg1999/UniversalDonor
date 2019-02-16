@@ -138,7 +138,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             userId = mAuth.getCurrentUser().getUid();
-                            User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), null);
+                            User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), new ArrayList<String>());
                             usersDatabase.child(userId).setValue(newUser);
                             startActivity(new Intent(getContext(),UserActivity.class));
                         }
