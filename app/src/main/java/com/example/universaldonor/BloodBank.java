@@ -8,22 +8,33 @@ public class BloodBank {
     private BloodStats bloodStats;
     ArrayList<String> donations;
     private long mobileNumber;
-    double latitude;
-    double longitude;
-    String address;
-    String city;
-    String state;
+    private double latitude;
+    private double longitude;
+    private String city;
+    private String state;
+    private String address;
+
+    public BloodBank(){
+    }
 
     public BloodBank(String bankName, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state) {
         this.bankName = bankName;
+
         this.bloodStats = bloodStats;
         this.donations = donations;
         this.mobileNumber = mobileNumber;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.address = address;
         this.city = city;
         this.state = state;
+        this.address = address;
+    }
+
+    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
+        BankName = bankName;
+        this.bloodStats = bloodStats;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getBankName() {
