@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(mAuth.getCurrentUser() != null){
             // start profile acivity
             finish();
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,UserActivity.class));
         }
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this,"Login sucessfull",Toast.LENGTH_SHORT).show();
                             // start profile activity
                             finish();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this,UserActivity.class));
                         }
                         else{
                             String errorMessage = task.getException().getMessage();

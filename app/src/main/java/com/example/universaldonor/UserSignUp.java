@@ -140,7 +140,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                             userId = mAuth.getCurrentUser().getUid();
                             User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), null);
                             usersDatabase.child(userId).setValue(newUser);
-                            startActivity(new Intent(getContext(),MainActivity.class));
+                            startActivity(new Intent(getContext(),UserActivity.class));
                         }
                         else{
                             Toast.makeText(getContext(),"Something happenned",Toast.LENGTH_SHORT).show();
