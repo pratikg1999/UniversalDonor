@@ -154,6 +154,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                             users.setValue(newuser);*/
                             //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getContext(),MainActivity.class));
                         }
                         else{

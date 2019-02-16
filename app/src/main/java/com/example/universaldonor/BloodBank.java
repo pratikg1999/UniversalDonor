@@ -6,6 +6,9 @@ public class BloodBank {
     private BloodStats bloodStats;
     private Donations donations;
     private long mobileNumber;
+    String latitude;
+    String longitude;
+    String address;
 
     public BloodBank(String bankName, BloodStats bloodStats, Donations donations, long mobileNumber) {
         BankName = bankName;

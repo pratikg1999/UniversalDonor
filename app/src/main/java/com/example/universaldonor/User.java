@@ -5,8 +5,8 @@ public class User {
     private String userName;
     private String userId;
     private String bloodGroup;
-    private String points;
-    private String numDonations;
+    private long points;
+    private long numDonations;
     private long level;
     private String address;
     private double latitude;
@@ -17,7 +17,7 @@ public class User {
 
     }
 
-    public User(String userName, String userId, String bloodGroup, String points, String numDonations, long level, String address, double latitude, double longitude, long mobileNumber) {
+    public User(String userName, String userId, String bloodGroup, long points, long numDonations, long level, String address, double latitude, double longitude, long mobileNumber) {
         this.userName = userName;
         this.userId = userId;
         this.bloodGroup = bloodGroup;
@@ -43,11 +43,11 @@ public class User {
         return bloodGroup;
     }
 
-    public String getPoints() {
+    public long getPoints() {
         return points;
     }
 
-    public String getNumDonations() {
+    public long getNumDonations() {
         return numDonations;
     }
 

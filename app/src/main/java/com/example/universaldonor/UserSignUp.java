@@ -52,7 +52,10 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
     private FirebaseDatabase database;
     private OnFragmentInteractionListener mListener;
     private String userId;
-    private DatabaseReference mref;
+    private DatabaseReference usersDatabase;
+    DatabaseReference bloodBanksDatabase;
+    DatabaseReference donationsDatabase;
+    DatabaseReference aquiresDatabase;
 
     public UserSignUp() {
         // Required empty public constructor
@@ -81,7 +84,11 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         FirebaseApp.initializeApp(getContext());
-        mref = database.getReference();
+        usersDatabase = database.getReference("users");
+        bloodBanksDatabase = database.getReference("bloodBanks");
+        donationsDatabase = database.getReference("donations");
+        aquiresDatabase = database.getReference("aquires");
+
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
@@ -126,15 +133,10 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            /*DatabaseReference users = database.getReference("users").child(task.getResult().getUser().getUid().toString());
-                            User newuser = new User(users.getKey(), mailId, new ArrayList<String>(Arrays.asList("dummy"))
-                                    ,new ArrayList<String>(Arrays.asList("dummy")),
-                                    new ArrayList<String>(Arrays.asList("dummy"))
-                                    , 0);
-                            users.setValue(newuser);*/
-                            //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             userId = mAuth.getCurrentUser().getUid();
+                            User newUser = new User("", userId, "",0,0,0,"",21.86579,82.65382,957632140);
+                            usersDatabase.child(userId).setValue(newUser);
                             startActivity(new Intent(getContext(),MainActivity.class));
                         }
                         else{
