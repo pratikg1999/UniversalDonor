@@ -132,10 +132,10 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
             addressET.setError("Enter Address");
             return;
         }
-        if(latitude==null || longitude==null){
-            Toast.makeText(getContext(), "Please click on address button to get location", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if(latitude==null || longitude==null){
+//            Toast.makeText(getContext(), "Please click on address button to get location", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         progressDialog.setMessage("Registering please wait ..........");
         progressDialog.show();
@@ -146,16 +146,9 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            /*DatabaseReference users = database.getReference("users").child(task.getResult().getUser().getUid().toString());
-                            User newuser = new User(users.getKey(), mailId, new ArrayList<String>(Arrays.asList("dummy"))
-                                    ,new ArrayList<String>(Arrays.asList("dummy")),
-                                    new ArrayList<String>(Arrays.asList("dummy"))
-                                    , 0);
-                            users.setValue(newuser);*/
-                            //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(getContext(),MainActivity.class));
+                            startActivity(new Intent(getContext(),UserActivity.class));
                         }
                         else{
                             Toast.makeText(getContext(),"Something happenned",Toast.LENGTH_SHORT).show();
