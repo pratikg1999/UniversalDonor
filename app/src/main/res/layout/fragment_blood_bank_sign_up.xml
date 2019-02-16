@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".BloodBankSignUp"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".BloodBankSignUp">
 
     <EditText
         android:id="@+id/email"
@@ -20,25 +20,46 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:inputType="textPassword" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Address"
-            android:inputType="textPostalAddress"
-            android:layout_weight="3"
-            />
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_mylocation" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Address"
+                android:inputType="textPostalAddress" />
+
+            <ImageButton
+                android:id="@+id/addressButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@android:drawable/ic_menu_mylocation" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/cityET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:hint="City"/>
+        <EditText
+            android:id="@+id/stateET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:hint="State"/>
+
     </LinearLayout>
 
 
@@ -56,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Already a user? Login"
-        android:textColor="#146FCA"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="#146FCA" />
 
-</>
+</LinearLayout>
