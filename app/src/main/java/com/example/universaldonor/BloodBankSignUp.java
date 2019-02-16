@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,12 +48,16 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
     private EditText email;
     private EditText password;
     private TextView login;
+    private EditText addressET;
+    private ImageButton addressButton;
+    private EditText cityET;
+    private EditText stateET;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private OnFragmentInteractionListener mListener;
-    private double latitude;
-    private double longitude;
+    private Double latitude;
+    private Double longitude;
 
     public BloodBankSignUp() {
         // Required empty public constructor
@@ -62,12 +67,10 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment BloodBankSignUp.
      */
     // TODO: Rename and change types and number of parameters
-    public static BloodBankSignUp newInstance(String param1, String param2) {
+    public static BloodBankSignUp newInstance() {
         BloodBankSignUp fragment = new BloodBankSignUp();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
@@ -97,22 +100,40 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
         password = (EditText) v.findViewById(R.id.password);
         login = (TextView) v.findViewById(R.id.login);
         signup = (Button) v.findViewById(R.id.signup);
+        addressET = v.findViewById(R.id.address);
+        cityET = v.findViewById(R.id.cityET);
+        stateET = v.findViewById(R.id.stateET);
+        addressButton = v.findViewById(R.id.addressButton);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(getContext());
         signup.setOnClickListener(this);
         login.setOnClickListener(this);
+        addressButton.setOnClickListener(this);
         return v;
     }
     private void bloodBankSignup(){
         final String mailId = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
+        String address = addressET.getText().toString().trim();
+        String city = cityET.getText().toString().trim();
+        String state = stateET.getText().toString().trim();
 
         if(TextUtils.isEmpty(mailId)){
+            email.setError("Enter a email");
             Toast.makeText(getContext(),"Please enter email",Toast.LENGTH_LONG);
             return;
         }
         if(TextUtils.isEmpty(pass)){
+            password.setError("Please enter password");
             Toast.makeText(getContext(),"Please enter a password",Toast.LENGTH_SHORT);
+            return;
+        }
+        if(TextUtils.isEmpty(address)){
+            addressET.setError("Enter Address");
+            return;
+        }
+        if(latitude==null || longitude==null){
+            Toast.makeText(getContext(), "Please click on address button to get location", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -175,7 +196,17 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                 break;
             case R.id.login:
                 startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
+            case R.id.addressButton:
+                getLatLng();
+                break;
 
+        }
+    }
+
+    private void getLatLng() {
+        if (mListener != null) {
+            mListener.getLatLng();
         }
     }
 
@@ -192,5 +223,6 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        void getLatLng();
     }
 }
