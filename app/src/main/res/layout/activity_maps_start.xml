@@ -10,36 +10,75 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="8dp"
         android:onClick="startMaps"
         android:text="start navigation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintStart_toStartOf="@+id/getBanksButton"
+        app:layout_constraintTop_toBottomOf="@+id/getBanksButton" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="53dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="52dp"
         android:outlineSpotShadowColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/regionEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/getBanksButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:onClick="displayBanksList"
+        android:text="Get nearby hospitals"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bloodGroupSpinner" />
 
     <EditText
         android:id="@+id/regionEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginBottom="41dp"
         android:ems="10"
         android:hint="Enter your curretn city"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/bloodGroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <ListView
+        android:id="@+id/bannksShowListView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton" />
+
+    <Spinner
+        android:id="@+id/bloodGroupSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/getBanksButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regionEditText" />
+
 </android.support.constraint.ConstraintLayout>

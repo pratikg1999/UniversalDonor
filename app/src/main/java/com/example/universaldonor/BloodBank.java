@@ -6,19 +6,31 @@ public class BloodBank {
     private BloodStats bloodStats;
     private Donations donations;
     private long mobileNumber;
-    String latitude;
-    String longitude;
-    String address;
+    private double latitude;
+    private double longitude;
+    private String city;
+    private String state;
+    private String address;
 
-    public BloodBank(String bankName, BloodStats bloodStats, Donations donations, long mobileNumber) {
+    public BloodBank(String bankName, BloodStats bloodStats, Donations donations, long mobileNumber, double latitude, double longitude, String city, String state, String address) {
         BankName = bankName;
         this.bloodStats = bloodStats;
         this.donations = donations;
         this.mobileNumber = mobileNumber;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.city = city;
+        this.state = state;
+        this.address = address;
     }
 
-    public BloodBank(){
-
+    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
+        BankName = bankName;
+        this.bloodStats = bloodStats;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.city = city;
+        this.state = state;
     }
 
     public String getBankName() {
@@ -35,5 +47,25 @@ public class BloodBank {
 
     public long getMobileNumber() {
         return mobileNumber;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }
