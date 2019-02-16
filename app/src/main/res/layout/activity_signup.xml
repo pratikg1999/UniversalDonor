@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/userSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Signup as User" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp" />
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/sign"
         android:layout_width="match_parent"
@@ -14,6 +31,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:orientation="vertical">
+
 
         <EditText
             android:id="@+id/email"
@@ -42,8 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Already a user? Login"
-            android:textColor="#146FCA"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="#146FCA" />
 
     </LinearLayout>
 </RelativeLayout>
