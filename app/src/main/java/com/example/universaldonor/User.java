@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class User {
 
     private String userName;
+    private String email;
     private String userId;
     private String bloodGroup;
     private long points;
@@ -21,8 +22,9 @@ public class User {
 
     }
 
-    public User(String userName, String userId, String bloodGroup, long points, long numDonations, long level, String address, double latitude, double longitude, long mobileNumber, ArrayList<String> donations, ArrayList<String> aquires) {
+    public User(String userName, String email,String userId, String bloodGroup, long points, long numDonations, long level, String address, double latitude, double longitude, long mobileNumber, ArrayList<String> donations, ArrayList<String> aquires) {
         this.userName = userName;
+        this.email = email;
         this.userId = userId;
         this.bloodGroup = bloodGroup;
         this.points = points;
@@ -82,6 +84,54 @@ public class User {
 
     public ArrayList<String> getAquires() {
         return aquires;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public void setPoints(long points) {
+        this.points = points;
+    }
+
+    public void setNumDonations(long numDonations) {
+        this.numDonations = numDonations;
+    }
+
+    public void setLevel(long level) {
+        this.level = level;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setMobileNumber(long mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public void setDonations(ArrayList<String> donations) {
+        this.donations = donations;
+    }
+
+    public void setAquires(ArrayList<String> aquires) {
+        this.aquires = aquires;
     }
 }
 

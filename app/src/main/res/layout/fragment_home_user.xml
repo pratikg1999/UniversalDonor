@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:padding="20dp">
         <ImageView
-            android:id="@+id/donors"
+            android:id="@+id/donorsIV"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:tooltipText="Donors"
@@ -24,7 +24,7 @@
             android:src="@drawable/home"
             android:layout_margin="5dp"/>
         <ImageView
-            android:id="@+id/borrowers"
+            android:id="@+id/borrowersIV"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -40,7 +40,7 @@
         android:padding="20dp"
         >
         <ImageView
-            android:id="@+id/bloodBanks"
+            android:id="@+id/bloodBanksIV"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:src="@drawable/home"

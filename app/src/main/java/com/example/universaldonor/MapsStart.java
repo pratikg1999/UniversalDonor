@@ -31,9 +31,8 @@ public class MapsStart extends AppCompatActivity {
     void filterBanks() {
         filteredBanks = new ArrayList<BloodBank>();
         for (BloodBank bank : addressBloodBanks) {
-            Log.d("bank", bank.getCity());
             Log.d("entered", regionEditText.getText().toString());
-            if (choice == 0 && (bank.getCity()).equals(regionEditText.getText().toString())) {
+            if (choice == 0 && (bank.getCity()).equals(regionEditText.getText( ).toString())) {
                 filteredBanks.add(bank);
                 Log.d("choice", String.valueOf(choice));
             }

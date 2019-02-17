@@ -25,8 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.xml.sax.helpers.LocatorImpl;
-
 import java.util.ArrayList;
 
 
@@ -111,7 +109,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_blood_bank_sign_up, container, false);
         email = (EditText) v.findViewById(R.id.email);
         password = (EditText) v.findViewById(R.id.password);
-        login = (TextView) v.findViewById(R.id.login);
+        login = (TextView) v.findViewById(R.id.loginAsUser);
         signup = (Button) v.findViewById(R.id.signup);
         addressET = v.findViewById(R.id.address);
         cityET = v.findViewById(R.id.cityET);
@@ -125,13 +123,13 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
         return v;
     }
     private void bloodBankSignup(){
-        final String mailId = email.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-        String address = addressET.getText().toString().trim();
-        String city = cityET.getText().toString().trim();
-        String state = stateET.getText().toString().trim();
+        final String tempEmail = email.getText().toString().trim();
+        final String address = addressET.getText().toString().trim();
+        final String city = cityET.getText().toString().trim();
+        final String pass = password.getText().toString().trim();
+        final String state = stateET.getText().toString().trim();
 
-        if(TextUtils.isEmpty(mailId)){
+        if(TextUtils.isEmpty(tempEmail)){
             email.setError("Enter a email");
             Toast.makeText(getContext(),"Please enter email",Toast.LENGTH_LONG);
             return;
@@ -145,6 +143,16 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
             addressET.setError("Enter Address");
             return;
         }
+        if(TextUtils.isEmpty(city)){
+            cityET.setError("City is required");
+            return;
+
+        }
+        if(TextUtils.isEmpty(state)){
+            stateET.setError("State is required");
+            return;
+        }
+        final String mailId = 0+tempEmail;
 //        if(latitude==null || longitude==null){
 //            Toast.makeText(getContext(), "Please click on address button to get location", Toast.LENGTH_SHORT).show();
 //            return;
@@ -168,10 +176,10 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                             //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             bankId = mAuth.getCurrentUser().getUid();
-                            BloodStats bloodStats = new BloodStats(0,0,0,0,0,0,0,0);
-                            BloodBank bloodBank = new BloodBank("IIIT",bloodStats,donations,987456321,SignupActivity.latitude,SignupActivity.longitude,addressET.getText().toString(),cityET.getText().toString(),stateET.getText().toString());
+                            BloodStats bloodStats = new BloodStats(10,01,10,10,0,10,0,0);
+                            BloodBank bloodBank = new BloodBank("",tempEmail, bloodStats,donations,-1,SignupActivity.latitude,SignupActivity.longitude,address,city,state.toString());
                             bloodBanksDatabase.child(bankId).setValue(bloodBank);
-                            startActivity(new Intent(getContext(),MainActivity.class));
+                            startActivity(new Intent(getContext(),BankActivity.class));
                         }
                         else{
                             Toast.makeText(getContext(),"Something happenned",Toast.LENGTH_SHORT).show();
@@ -211,7 +219,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
             case R.id.signup:
                 bloodBankSignup();
                 break;
-            case R.id.login:
+            case R.id.loginAsUser:
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.addressButton:
