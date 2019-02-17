@@ -25,9 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-import org.xml.sax.helpers.LocatorImpl;
-
 import java.util.ArrayList;
 
 
@@ -112,7 +109,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_blood_bank_sign_up, container, false);
         email = (EditText) v.findViewById(R.id.email);
         password = (EditText) v.findViewById(R.id.password);
-        login = (TextView) v.findViewById(R.id.login);
+        login = (TextView) v.findViewById(R.id.loginAsUser);
         signup = (Button) v.findViewById(R.id.signup);
         addressET = v.findViewById(R.id.address);
         cityET = v.findViewById(R.id.cityET);
@@ -222,7 +219,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
             case R.id.signup:
                 bloodBankSignup();
                 break;
-            case R.id.login:
+            case R.id.loginAsUser:
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.addressButton:

@@ -10,5 +10,6 @@
         android:id="@+id/signOut"
         android:orderInCategory="101"
         android:title="Signout"
+        android:icon="@drawable/logout"
         app:showAsAction="never"/>
 </menu>

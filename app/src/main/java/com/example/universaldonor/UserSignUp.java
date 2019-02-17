@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,7 +104,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
         View v =  inflater.inflate(R.layout.fragment_user_sign_up, container, false);
         email = (EditText) v.findViewById(R.id.email);
         password = (EditText) v.findViewById(R.id.password);
-        login = (TextView) v.findViewById(R.id.login);
+        login = (TextView) v.findViewById(R.id.loginAsUser);
         signup = (Button) v.findViewById(R.id.signup);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(getContext());
@@ -180,7 +179,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
             case R.id.signup:
                 usersignup();
                 break;
-            case R.id.login:
+            case R.id.loginAsUser:
                 startActivity(new Intent(getContext(), LoginActivity.class));
         }
     }
