@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-public class NeedBankFragment extends Fragment {
+public class NeedBankFragment extends Fragment  {
+
+
 
     @Nullable
     @Override
@@ -19,5 +22,9 @@ public class NeedBankFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
     }
+
+
 }

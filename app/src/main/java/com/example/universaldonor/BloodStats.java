@@ -17,7 +17,7 @@ public class BloodStats {
         this.bMinus = bMinus;
         this.bPlus = bPlus;
         this.oMinus = oMinus;
-        this.oPlus = oPlus;
+        this.oPlus  = oPlus;
         this.abMinus = abMinus;
         this.abPlus = abPlus;
     }

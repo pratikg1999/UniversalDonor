@@ -3,7 +3,7 @@ package com.example.universaldonor;
 
 import java.util.Date;
 
-public class Donations {
+public class Donations{
 
     private String userId;
     private String bloodBankId;
