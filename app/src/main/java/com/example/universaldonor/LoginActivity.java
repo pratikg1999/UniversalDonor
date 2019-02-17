@@ -21,7 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button login;
+    private Button loginAsUser;
+    private Button loginAsBank;
     static EditText email;
     private EditText password;
     private TextView signup;
@@ -35,7 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        login = (Button) findViewById(R.id.login);
+        loginAsUser = (Button) findViewById(R.id.loginAsUser);
+        loginAsBank = findViewById(R.id.loginAsBank);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         signup = (TextView) findViewById(R.id.signUpArea);
@@ -43,27 +45,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(mAuth.getCurrentUser() != null){
-            // start profile acivity
+            String curUserEmail = mAuth.getCurrentUser().getEmail();
             finish();
-            startActivity(new Intent(this,UserActivity.class));
+            if(curUserEmail.charAt(0)=='0'){
+                startActivity(new Intent(this, BankActivity.class));
+            }
+            else {
+                // start profile acivity
+                startActivity(new Intent(this, UserActivity.class));
+            }
         }
-        login.setOnClickListener(this);
+        loginAsUser.setOnClickListener(this);
+        loginAsBank.setOnClickListener(this);
         signup.setOnClickListener(this);
     }
 
     public void userlogin() {
 
-        final String mailId = email.getText().toString().trim();
+        String tempEmail = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        if(TextUtils.isEmpty(mailId)){
+        if(TextUtils.isEmpty(tempEmail)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG);
             return;
         }
         if(TextUtils.isEmpty(pass)){
             Toast.makeText(this,"Please enter a password",Toast.LENGTH_SHORT);
         }
-
+        final String mailId = 1+tempEmail;
         progressDialog.setMessage("Logging in please wait ..........");
         progressDialog.show();
 
@@ -93,10 +102,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
             startActivity(new Intent(this,SignupActivity.class));
         }
-        if(v == login){
+        if(v == loginAsUser){
             userlogin();
+        }
+        if(v == loginAsBank){
+            bankLogin();
         }
     }
 
+    private void bankLogin() {
+        final String tempEmail = email.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+
+        if(TextUtils.isEmpty(tempEmail)){
+            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG);
+            return;
+        }
+        if(TextUtils.isEmpty(pass)){
+            Toast.makeText(this,"Please enter a password",Toast.LENGTH_SHORT);
+        }
+        final String mailId = 0+tempEmail;
+        progressDialog.setMessage("Logging in please wait ..........");
+        progressDialog.show();
+
+        mAuth.signInWithEmailAndPassword(mailId,pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
+                        if(task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this,"Login sucessfull",Toast.LENGTH_SHORT).show();
+                            // start profile activity
+                            finish();
+                            startActivity(new Intent(LoginActivity.this,BankActivity.class));
+                        }
+                        else{
+                            String errorMessage = task.getException().getMessage();
+                            Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
+
+}
 
