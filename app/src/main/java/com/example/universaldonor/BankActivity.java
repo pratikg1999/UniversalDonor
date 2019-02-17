@@ -16,13 +16,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class BankActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
+        mAuth = FirebaseAuth.getInstance();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -67,6 +72,11 @@ public class BankActivity extends AppCompatActivity
             return true;
         }
 
+        if (id == R.id.signOut) {
+
+            mAuth.signOut();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -84,12 +94,16 @@ public class BankActivity extends AppCompatActivity
 
         } else if (id == R.id.need_bank) {
 
+            fragment = new NeedBankFragment();
 
 
         } else if (id == R.id.stats_bank) {
 
+            fragment = new StatsFragment();
+
         } else if (id == R.id.history_bank) {
 
+            fragment = new BankHistory();
         }
 
         if(fragment != null){
