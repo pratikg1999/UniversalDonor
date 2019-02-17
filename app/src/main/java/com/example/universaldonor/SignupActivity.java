@@ -45,8 +45,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     FragmentManager fragmentManager;
     LocationManager locationManager;
     LocationListener locationListener;
-    static double latitude;
-    static double longitude;
+    static double latitude = 21.2448;
+    static double longitude = 81.6438;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/email"
         android:drawablePadding="8dp"
+        android:inputType="textEmailAddress"
         android:hint="email" />
 
     <EditText

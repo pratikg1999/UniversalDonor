@@ -10,6 +10,13 @@
         android:layout_height="wrap_content"
         android:hint="User Id"/>
 
+    <Spinner
+        android:id="@+id/usernamesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/usernames_array">
+
+    </Spinner>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

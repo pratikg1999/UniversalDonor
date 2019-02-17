@@ -1,14 +1,20 @@
 package com.example.universaldonor;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,17 +30,20 @@ import java.util.Date;
 public class BankHomeFragment extends Fragment implements View.OnClickListener,Dialog.dialogListner{
 
     Button newDonation;
-    String userId;
+    String userId = "2c9fYNm6crUJtu7TPgQ6GUwYj4m1";
     long numUnits;
     private DatabaseReference usersDatabase;
     DatabaseReference bloodBanksDatabase;
     DatabaseReference donationsDatabase;
     DatabaseReference aquiresDatabase;
     private FirebaseDatabase database;
+    ArrayList<User> users;
+    ArrayList<String> usernames;
     FirebaseAuth mAuth;
     String bankId;
     String bG;
     Date date;
+    ArrayAdapter<String> adapter;
 
 
 
@@ -57,6 +66,8 @@ public class BankHomeFragment extends Fragment implements View.OnClickListener,D
         bloodBanksDatabase = database.getReference("bloodBanks");
         donationsDatabase = database.getReference("donations");
         aquiresDatabase = database.getReference("aquires");
+        users = new ArrayList<>();
+        usernames = new ArrayList<>();
 
         newDonation.setOnClickListener(this);
 
@@ -67,10 +78,20 @@ public class BankHomeFragment extends Fragment implements View.OnClickListener,D
 
 
 
-        bloodBanksDatabase.addValueEventListener(new ValueEventListener() {
+        usersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 bG = dataSnapshot.child(userId).child("bloodGroup").getValue(String.class);
+                users.clear();
+                usernames.clear();
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    User newUser = userSnapshot.getValue(User.class);
+                    users.add(newUser);
+                    usernames.add(newUser.getUserName());
+
+                }
+                adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, usernames);
+
             }
 
             @Override
@@ -80,9 +101,7 @@ public class BankHomeFragment extends Fragment implements View.OnClickListener,D
         });
 
 
-        Donations donations = new Donations(userId,bankId,bG,numUnits,date);
 
-        donationsDatabase.push().setValue(donations);
 
 
 
@@ -102,8 +121,37 @@ public class BankHomeFragment extends Fragment implements View.OnClickListener,D
 
     public void openDialog(){
 
-        Dialog dialog = new Dialog();
-        dialog.show(getFragmentManager(), "dialog");
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.layout_dialog, null);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        dialogBuilder.setView(view);
+        dialogBuilder.setTitle("Donate blood");
+        final EditText userIdET = view.findViewById(R.id.userId);
+        final EditText numUnitsET = view.findViewById(R.id.numUnits);
+        final Spinner usernamesSpinner = view.findViewById(R.id.usernamesSpinner);
+        usernamesSpinner.setAdapter(adapter);
+        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int index = usernamesSpinner.getSelectedItemPosition();
+                userId = users.get(index).getUserId();
+                //userId = userIdET.getText().toString();
+                numUnits = Long.parseLong(numUnitsET.getText().toString());
+                Donations donations = new Donations(userId,bankId,bG,numUnits,date);
+                donationsDatabase.push().setValue(donations);
+                Toast.makeText(getContext(), "Donation created", Toast.LENGTH_SHORT).show();
+            }
+        });
+        final AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+
+
+
+//        Dialog dialog = new Dialog();
+//        dialog.show(getActivity().getSupportFragmentManager(), "dialog");
+//        Donations donations = new Donations(userId,bankId,bG,numUnits,date);
+
+//        donationsDatabase.push().setValue(donations);
     }
 
     @Override

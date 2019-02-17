@@ -75,6 +75,7 @@ public class BankActivity extends AppCompatActivity
         else if(id == R.id.signOut){
             mAuth.signOut();
             startActivity(new Intent(BankActivity.this,LoginActivity.class));
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

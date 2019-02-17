@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,37 +16,43 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="20dp">
+
         <ImageView
-            android:id="@+id/donorsIV"
+            android:id="@+id/bloodBanksIV"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:tooltipText="Donors"
             android:layout_height="match_parent"
-            android:src="@drawable/home"
-            android:layout_margin="5dp"/>
-        <ImageView
-            android:id="@+id/borrowersIV"
-            android:layout_width="0dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
             android:src="@drawable/home"
-            android:tooltipText="Borrowers"
-            android:layout_margin="5dp"/>
+            app:srcCompat="@drawable/bloodbanks" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
+        android:padding="20dp">
+
         <ImageView
-            android:id="@+id/bloodBanksIV"
+            android:id="@+id/donorsIV"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:src="@drawable/home"
+            android:tooltipText="Donors"
+            app:srcCompat="@drawable/donateblood" />
+
+        <ImageView
+            android:id="@+id/borrowersIV"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/home"
+            android:tooltipText="Borrowers"
+            app:srcCompat="@drawable/borrowblood" />
     </LinearLayout>
 
 </LinearLayout>

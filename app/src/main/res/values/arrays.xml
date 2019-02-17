@@ -10,4 +10,5 @@
         <item>O+</item>
         <item>O-</item>
     </string-array>
+    <string-array name="usernames_array" />
 </resources>

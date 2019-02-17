@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -105,12 +106,15 @@ public class UserActivity extends AppCompatActivity
 
             }
         });
-
-        HomeUser homeUser = HomeUser.newInstance();
-        fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeUser).commit();
-
-        UserProfile userProfile = UserProfile.newInstance(userDatabase, curUserProfile);
-        fragmentManager.beginTransaction().replace(R.id.content_main_relative, userProfile).commit();
+        if(curUserProfile.getUserName()==null || curUserProfile.getUserName().equals("")){
+            UserProfile userProfile = UserProfile.newInstance(userDatabase, curUserProfile);
+            fragmentManager.beginTransaction().replace(R.id.content_main_relative, userProfile).commit();
+            Toast.makeText(this, "Please update your profile", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            HomeUser homeUser = HomeUser.newInstance();
+            fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeUser).commit();
+        }
 
     }
 
@@ -144,6 +148,7 @@ public class UserActivity extends AppCompatActivity
             case R.id.action_logout:
                 mAuth.signOut();
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 return true;
 
 
@@ -165,6 +170,10 @@ public class UserActivity extends AppCompatActivity
             case R.id.nav_home:
                 HomeUser homeFragement = HomeUser.newInstance();
                 fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeFragement).commit();
+                break;
+            case R.id.nav_profile:
+                UserProfile userProfile = UserProfile.newInstance(userDatabase, curUserProfile);
+                fragmentManager.beginTransaction().replace(R.id.content_main_relative, userProfile).commit();
                 break;
 
         }

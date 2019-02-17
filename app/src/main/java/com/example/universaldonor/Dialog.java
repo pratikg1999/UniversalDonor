@@ -23,6 +23,8 @@ public class Dialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog,null);
 
+        userId = view.findViewById(R.id.userId);
+        numUnits = view.findViewById(R.id.numUnits);
         builder.setView(view)
                 .setTitle("New Donation")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -41,8 +43,6 @@ public class Dialog extends AppCompatDialogFragment {
 
                     }
                 });
-        userId = view.findViewById(R.id.userId);
-        numUnits = view.findViewById(R.id.numUnits);
 
         return builder.create();
     }
