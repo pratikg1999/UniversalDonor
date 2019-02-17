@@ -115,10 +115,10 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
     }
 
     private void usersignup(){
-        final String mailId = email.getText().toString().trim();
+        final String tempEmail = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        if(TextUtils.isEmpty(mailId)){
+        if(TextUtils.isEmpty(tempEmail)){
             Toast.makeText(getContext(),"Please enter email",Toast.LENGTH_LONG);
             return;
         }
@@ -126,6 +126,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(),"Please enter a password",Toast.LENGTH_SHORT);
             return;
         }
+        final String mailId = 1+tempEmail;
 
         progressDialog.setMessage("Registering please wait ..........");
         progressDialog.show();
@@ -138,7 +139,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             userId = mAuth.getCurrentUser().getUid();
-                            User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), new ArrayList<String>());
+                            User newUser = new User("", tempEmail, userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), new ArrayList<String>());
                             usersDatabase.child(userId).setValue(newUser);
                             startActivity(new Intent(getContext(),UserActivity.class));
                         }
