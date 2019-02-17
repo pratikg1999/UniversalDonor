@@ -1,5 +1,6 @@
 package com.example.universaldonor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -71,10 +72,9 @@ public class BankActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
-        if (id == R.id.signOut) {
-
+        else if(id == R.id.signOut){
             mAuth.signOut();
+            startActivity(new Intent(BankActivity.this,LoginActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

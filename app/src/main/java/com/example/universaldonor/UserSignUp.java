@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,7 +104,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
         View v =  inflater.inflate(R.layout.fragment_user_sign_up, container, false);
         email = (EditText) v.findViewById(R.id.email);
         password = (EditText) v.findViewById(R.id.password);
-        login = (TextView) v.findViewById(R.id.login);
+        login = (TextView) v.findViewById(R.id.loginAsUser);
         signup = (Button) v.findViewById(R.id.signup);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(getContext());
@@ -115,10 +114,10 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
     }
 
     private void usersignup(){
-        final String mailId = email.getText().toString().trim();
+        final String tempEmail = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        if(TextUtils.isEmpty(mailId)){
+        if(TextUtils.isEmpty(tempEmail)){
             Toast.makeText(getContext(),"Please enter email",Toast.LENGTH_LONG);
             return;
         }
@@ -126,6 +125,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(),"Please enter a password",Toast.LENGTH_SHORT);
             return;
         }
+        final String mailId = 1+tempEmail;
 
         progressDialog.setMessage("Registering please wait ..........");
         progressDialog.show();
@@ -138,7 +138,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             userId = mAuth.getCurrentUser().getUid();
-                            User newUser = new User("", userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), new ArrayList<String>());
+                            User newUser = new User("", tempEmail, userId, "",0,0,0,"",SignupActivity.latitude, SignupActivity.longitude,957632140, new ArrayList<String>(Arrays.asList(new String[]{"asdf", "sdf"})), new ArrayList<String>());
                             usersDatabase.child(userId).setValue(newUser);
                             startActivity(new Intent(getContext(),UserActivity.class));
                         }
@@ -179,7 +179,7 @@ public class UserSignUp extends Fragment implements View.OnClickListener{
             case R.id.signup:
                 usersignup();
                 break;
-            case R.id.login:
+            case R.id.loginAsUser:
                 startActivity(new Intent(getContext(), LoginActivity.class));
         }
     }

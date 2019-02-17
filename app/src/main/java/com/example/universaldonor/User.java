@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class User {
 
     private String userName;
+    private String email;
     private String userId;
     private String bloodGroup;
     private long points;
@@ -21,8 +22,9 @@ public class User {
 
     }
 
-    public User(String userName, String userId, String bloodGroup, long points, long numDonations, long level, String address, double latitude, double longitude, long mobileNumber, ArrayList<String> donations, ArrayList<String> aquires) {
+    public User(String userName, String email,String userId, String bloodGroup, long points, long numDonations, long level, String address, double latitude, double longitude, long mobileNumber, ArrayList<String> donations, ArrayList<String> aquires) {
         this.userName = userName;
+        this.email = email;
         this.userId = userId;
         this.bloodGroup = bloodGroup;
         this.points = points;
@@ -82,6 +84,10 @@ public class User {
 
     public ArrayList<String> getAquires() {
         return aquires;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
 
