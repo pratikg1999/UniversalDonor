@@ -119,15 +119,15 @@ public class MapsStart extends AppCompatActivity {
 
         setOnClickListener(bloodGroupSpinner);
 
-        BloodBank bank1 = new BloodBank("Jeevan IIIT", new BloodStats(2,2,2,2,2,2,2,2),
-                21.1285, 81.7662, "Raipur", "Chattisgarh");
-        BloodBank bank2 = new BloodBank("NIT Raipur", new BloodStats(2,2,2,2,2,2,2,2),
-                21.2497, 81.6050, "Raipur", "Chattisgarh");
-        BloodBank bank3 = new BloodBank("HNLU", new BloodStats(9,2,2,2,2,2,2,2),
-                21.1067, 81.7590, "Raipur", "Chattisgarh");
-        addressBloodBanks.add(bank1);
-        addressBloodBanks.add(bank2);
-        addressBloodBanks.add(bank3);
+//        BloodBank bank1 = new BloodBank("Jeevan IIIT", new BloodStats(2,2,2,2,2,2,2,2),
+//                21.1285, 81.7662, "Raipur", "Chattisgarh");
+//        BloodBank bank2 = new BloodBank("NIT Raipur", new BloodStats(2,2,2,2,2,2,2,2),
+//                21.2497, 81.6050, "Raipur", "Chattisgarh");
+//        BloodBank bank3 = new BloodBank("HNLU", new BloodStats(9,2,2,2,2,2,2,2),
+//                21.1067, 81.7590, "Raipur", "Chattisgarh");
+//        addressBloodBanks.add(bank1);
+//        addressBloodBanks.add(bank2);
+//        addressBloodBanks.add(bank3);
 
 
 
