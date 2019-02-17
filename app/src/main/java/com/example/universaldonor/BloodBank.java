@@ -6,48 +6,29 @@ public class BloodBank {
 
     private String bankName;
     private BloodStats bloodStats;
-    ArrayList<String> donations;
+    private ArrayList<String> donations;
     private long mobileNumber;
-<<<<<<<<< Temporary merge branch 1
-    double latitude;
-    double longitude;
-    String address;
-    String city;
-    String state;
-
-    public BloodBank(String bankName, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state) {
-        this.bankName = bankName;
-=========
     private double latitude;
     private double longitude;
-    private String city;
-    private String state;
     private String address;
+    private String city;
+    private  String state;
+    private String email;
 
-    public BloodBank(String bankName, BloodStats bloodStats, Donations donations, long mobileNumber, double latitude, double longitude, String city, String state, String address) {
-        BankName = bankName;
->>>>>>>>> Temporary merge branch 2
+    public BloodBank(String bankName, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state, String email) {
+        this.bankName = bankName;
         this.bloodStats = bloodStats;
         this.donations = donations;
         this.mobileNumber = mobileNumber;
         this.latitude = latitude;
         this.longitude = longitude;
-<<<<<<<<< Temporary merge branch 1
         this.address = address;
-=========
         this.city = city;
         this.state = state;
-        this.address = address;
+        this.email = email;
     }
 
-    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
-        BankName = bankName;
-        this.bloodStats = bloodStats;
-        this.latitude = latitude;
-        this.longitude = longitude;
->>>>>>>>> Temporary merge branch 2
-        this.city = city;
-        this.state = state;
+    public BloodBank() {
     }
 
     public String getBankName() {
@@ -74,13 +55,10 @@ public class BloodBank {
         return longitude;
     }
 
-<<<<<<<<< Temporary merge branch 1
     public String getAddress() {
         return address;
     }
 
-=========
->>>>>>>>> Temporary merge branch 2
     public String getCity() {
         return city;
     }
@@ -88,11 +66,10 @@ public class BloodBank {
     public String getState() {
         return state;
     }
-<<<<<<<<< Temporary merge branch 1
-=========
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
->>>>>>>>> Temporary merge branch 2
 }
+
+

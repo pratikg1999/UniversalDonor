@@ -36,8 +36,6 @@
             android:label="@string/title_activity_maps2"></activity>
         <activity android:name=".MapsStart">
         </activity>
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".LoginActivity"/>
         <activity
             android:name=".BankActivity"
             android:label="@string/title_activity_bank"
@@ -45,14 +43,10 @@
         <activity
             android:name=".UserActivity"
             android:label="@string/title_activity_user"
-<<<<<<<<< Temporary merge branch 1
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity">
-=========
+        <activity android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
->>>>>>>>> Temporary merge branch 2
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
