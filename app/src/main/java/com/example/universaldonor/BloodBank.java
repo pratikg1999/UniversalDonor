@@ -30,12 +30,6 @@ public class BloodBank {
         this.address = address;
     }
 
-    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
-        BankName = bankName;
-        this.bloodStats = bloodStats;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
 
     public String getBankName() {
         return bankName;
