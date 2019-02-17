@@ -5,39 +5,30 @@ import java.util.ArrayList;
 public class BloodBank {
 
     private String bankName;
-    private String email;
     private BloodStats bloodStats;
     private ArrayList<String> donations;
     private long mobileNumber;
     private double latitude;
     private double longitude;
-    private String city;
-    private String state;
     private String address;
+    private String city;
+    private  String state;
+    private String email;
 
-    public BloodBank(){
-    }
-
-    public BloodBank(String bankName, String email, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state) {
+    public BloodBank(String bankName, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state, String email) {
         this.bankName = bankName;
-        this.email = email;
         this.bloodStats = bloodStats;
         this.donations = donations;
         this.mobileNumber = mobileNumber;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.address = address;
         this.city = city;
         this.state = state;
-        this.address = address;
+        this.email = email;
     }
 
-    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
-        this.bankName = bankName;
-        this.bloodStats = bloodStats;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.city = city;
-        this.state = state;
+    public BloodBank() {
     }
 
     public String getBankName() {
@@ -75,4 +66,10 @@ public class BloodBank {
     public String getState() {
         return state;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }
+
+

@@ -2,6 +2,7 @@ package com.example.universaldonor;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -27,6 +34,8 @@ public class MapsStart extends AppCompatActivity {
     ListView listView;
     int choice;
     static int bloodGroupChoice = -1;
+    DatabaseReference bloodBankDatabaseReference;
+
 
     void filterBanks() {
         filteredBanks = new ArrayList<BloodBank>();
@@ -67,6 +76,7 @@ public class MapsStart extends AppCompatActivity {
         regionEditText = findViewById(R.id.regionEditText);
         bloodGroupSpinner = findViewById(R.id.bloodGroupSpinner);
         listView = findViewById(R.id.bannksShowListView);
+        bloodBankDatabaseReference = FirebaseDatabase.getInstance().getReference("bloodBanks");
 
         spinner = findViewById(R.id.spinner);
         spinnerChoices.add("City");
@@ -131,7 +141,31 @@ public class MapsStart extends AppCompatActivity {
 
 
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bloodBankDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    for (DataSnapshot dshot : dataSnapshot.getChildren()) {
+                        Log.d("Success",dataSnapshot.toString());
+                        Log.d("Success",dataSnapshot.toString());
+                        addressBloodBanks.add(dshot.getValue(BloodBank.class));
+                        Log.i("Success", "Successfull");
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Something went wrong! Check your connection.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void startMaps(View view){
