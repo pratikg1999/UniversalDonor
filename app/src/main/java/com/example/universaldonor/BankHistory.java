@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,15 +47,19 @@ public class BankHistory extends Fragment {
         donationsDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Donations to_consider = dataSnapshot.getValue(Donations.class);
-                String s = "";
-                if (to_consider.getBloodBankId().equals(mAuth.getCurrentUser().getUid())) {
-                    donationsArrayList.add(to_consider);
-                    s += "donorID: " + to_consider.getUserId() + "\nDonated On: "
-                            + to_consider.getDateDonated() +"\nAmount: " +
-                            to_consider.getAmountOfBlood() + "\nBlood Type: "
-                            + to_consider.getBloodType();
-                    displayArrayList.add(s);
+                for(DataSnapshot dataSnapshot2: dataSnapshot.getChildren()) {
+                    Donations to_consider = dataSnapshot2.getValue(Donations.class);
+                    String s = "";
+                    Log.i("msg1", to_consider.getBloodBankId() + "dhjasg");
+                    Log.i("msg2", mAuth.getCurrentUser().getUid() + "bcj;kdab");
+                    if (to_consider.getBloodBankId().equals(mAuth.getCurrentUser().getUid())) {
+                        donationsArrayList.add(to_consider);
+                        s += "donorID: " + to_consider.getUserId() + "\nDonated On: "
+                                + to_consider.getDateDonated() + "\nAmount: " +
+                                to_consider.getAmountOfBlood() + "\nBlood Type: "
+                                + to_consider.getBloodType();
+                        displayArrayList.add(s);
+                    }
                 }
             }
 

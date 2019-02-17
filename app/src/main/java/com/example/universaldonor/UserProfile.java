@@ -26,7 +26,7 @@ import java.util.Arrays;
 public class UserProfile extends Fragment {
 
 
-    private User curUserProfile;
+    private User curUserProfile = new User();
     private DatabaseReference curUserDatabase;
     private EditText usernameET;
     private EditText addressET;

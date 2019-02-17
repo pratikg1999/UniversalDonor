@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/userId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Id"/>
+    <!--<EditText-->
+        <!--android:id="@+id/userId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="User Id"/>-->
 
     <Spinner
         android:id="@+id/usernamesSpinner"
@@ -20,10 +21,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userId"
         android:hint="Number of units"
         android:id="@+id/numUnits"
-        android:layout_alignParentStart="true"/>
+/>
 
 
-</RelativeLayout>
+</LinearLayout>

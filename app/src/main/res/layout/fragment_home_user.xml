@@ -23,7 +23,6 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:src="@drawable/home"
             app:srcCompat="@drawable/bloodbanks" />
     </LinearLayout>
 
@@ -40,7 +39,6 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:src="@drawable/home"
             android:tooltipText="Donors"
             app:srcCompat="@drawable/donateblood" />
 
@@ -50,7 +48,6 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:src="@drawable/home"
             android:tooltipText="Borrowers"
             app:srcCompat="@drawable/borrowblood" />
     </LinearLayout>

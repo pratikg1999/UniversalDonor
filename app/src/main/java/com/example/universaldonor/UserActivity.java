@@ -175,6 +175,10 @@ public class UserActivity extends AppCompatActivity
                 UserProfile userProfile = UserProfile.newInstance(userDatabase, curUserProfile);
                 fragmentManager.beginTransaction().replace(R.id.content_main_relative, userProfile).commit();
                 break;
+            case R.id.nav_blood_banks:
+                startActivity(new Intent(this, MapsStart.class));
+                break;
+
 
         }
 

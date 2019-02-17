@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class Dialog extends AppCompatDialogFragment {
 
-    private EditText userId;
+    //private EditText userId;
     private EditText numUnits;
     private dialogListner listner;
 
@@ -23,7 +23,7 @@ public class Dialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog,null);
 
-        userId = view.findViewById(R.id.userId);
+        //userId = view.findViewById(R.id.userId);
         numUnits = view.findViewById(R.id.numUnits);
         builder.setView(view)
                 .setTitle("New Donation")
@@ -37,9 +37,9 @@ public class Dialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String user = userId.getText().toString();
+                        //String user = userId.getText().toString();
                         long units = Long.parseLong(numUnits.getText().toString());
-                        listner.applyTexts(user,units);
+                        //listner.applyTexts(user,units);
 
                     }
                 });

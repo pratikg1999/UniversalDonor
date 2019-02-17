@@ -36,14 +36,14 @@
             android:id="@+id/nav_history"
             android:title="Donation History"
             android:icon="@drawable/home"/>
-        <item
-            android:id="@+id/nav_leaderboard"
-            android:title="Leaderboard"
-            android:icon="@drawable/home"/>
-        <item
-            android:id="@+id/nav_requests"
-            android:title="Requests"
-            android:icon="@drawable/home"/>
+        <!--<item-->
+            <!--android:id="@+id/nav_leaderboard"-->
+            <!--android:title="Leaderboard"-->
+            <!--android:icon="@drawable/home"/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_requests"-->
+            <!--android:title="Requests"-->
+            <!--android:icon="@drawable/home"/>-->
         <item
             android:id="@+id/nav_profile"
             android:title="Profile"
@@ -52,17 +52,17 @@
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

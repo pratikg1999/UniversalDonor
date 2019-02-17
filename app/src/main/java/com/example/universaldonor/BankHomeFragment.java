@@ -126,7 +126,7 @@ public class BankHomeFragment extends Fragment implements View.OnClickListener,D
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         dialogBuilder.setView(view);
         dialogBuilder.setTitle("Donate blood");
-        final EditText userIdET = view.findViewById(R.id.userId);
+        //final EditText userIdET = view.findViewById(R.id.userId);
         final EditText numUnitsET = view.findViewById(R.id.numUnits);
         final Spinner usernamesSpinner = view.findViewById(R.id.usernamesSpinner);
         usernamesSpinner.setAdapter(adapter);
