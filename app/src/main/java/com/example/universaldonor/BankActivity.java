@@ -72,7 +72,6 @@ public class BankActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         else if(id == R.id.signOut){
             mAuth.signOut();
             startActivity(new Intent(BankActivity.this,LoginActivity.class));
@@ -95,12 +94,16 @@ public class BankActivity extends AppCompatActivity
 
         } else if (id == R.id.need_bank) {
 
+            fragment = new NeedBankFragment();
 
 
         } else if (id == R.id.stats_bank) {
 
+            fragment = new StatsFragment();
+
         } else if (id == R.id.history_bank) {
 
+            fragment = new BankHistory();
         }
 
         if(fragment != null){
