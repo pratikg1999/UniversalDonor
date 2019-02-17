@@ -32,13 +32,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeUser.OnFragmentInteractionListener, Donors.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,
+        HomeUser.OnFragmentInteractionListener,
+        Donors.OnFragmentInteractionListener,
+        UserProfile.OnFragmentInteractionListener{
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     FirebaseUser curUser;
     FragmentManager fragmentManager;
     DatabaseReference usersDatabase;
+    DatabaseReference userDatabase;
+    User curUserProfile;
     ArrayList<User> users = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,8 @@ public class UserActivity extends AppCompatActivity
         curUser  = mAuth.getCurrentUser();
         usersDatabase = database.getReference("users");
         fragmentManager = getSupportFragmentManager();
+        userDatabase = usersDatabase.child(curUser.getUid());
+        curUserProfile = new User();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -87,8 +94,23 @@ public class UserActivity extends AppCompatActivity
             }
         });
 
+        userDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                curUserProfile = dataSnapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         HomeUser homeUser = HomeUser.newInstance();
         fragmentManager.beginTransaction().replace(R.id.content_main_relative, homeUser).commit();
+
+        UserProfile userProfile = UserProfile.newInstance(userDatabase, curUserProfile);
+        fragmentManager.beginTransaction().replace(R.id.content_main_relative, userProfile).commit();
 
     }
 

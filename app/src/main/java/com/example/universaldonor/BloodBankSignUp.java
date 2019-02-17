@@ -176,7 +176,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                             //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
                             bankId = mAuth.getCurrentUser().getUid();
-                            BloodStats bloodStats = new BloodStats(0,0,0,0,0,0,0,0);
+                            BloodStats bloodStats = new BloodStats(10,01,10,10,0,10,0,0);
                             BloodBank bloodBank = new BloodBank("",tempEmail, bloodStats,donations,-1,SignupActivity.latitude,SignupActivity.longitude,address,city,state.toString());
                             bloodBanksDatabase.child(bankId).setValue(bloodBank);
                             startActivity(new Intent(getContext(),BankActivity.class));
