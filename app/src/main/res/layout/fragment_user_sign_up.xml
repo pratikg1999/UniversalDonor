@@ -11,6 +11,8 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="8dp"
         android:hint="email" />
 
     <EditText
@@ -18,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="password"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="8dp"
         android:inputType="textPassword" />
 
     <Button
@@ -35,6 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Already a user? Login"
         android:textColor="#146FCA"
+        android:layout_marginTop="7dp"
         android:textAlignment="center"/>
 
 </LinearLayout>

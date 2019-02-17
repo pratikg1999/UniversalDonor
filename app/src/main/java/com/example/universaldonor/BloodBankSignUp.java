@@ -22,9 +22,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.xml.sax.helpers.LocatorImpl;
+
+import java.util.ArrayList;
 
 
 /**
@@ -44,6 +47,7 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
     // TODO: Rename and change types of parameters
 //    private String mParam1;
 //    private String mParam2;
+    private String bankId;
     private Button signup;
     private EditText email;
     private EditText password;
@@ -58,6 +62,11 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
     private OnFragmentInteractionListener mListener;
     private Double latitude;
     private Double longitude;
+    private DatabaseReference usersDatabase;
+    DatabaseReference bloodBanksDatabase;
+    DatabaseReference donationsDatabase;
+    DatabaseReference aquiresDatabase;
+    ArrayList<String> donations;
 
     public BloodBankSignUp() {
         // Required empty public constructor
@@ -85,6 +94,10 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         FirebaseApp.initializeApp(getContext());
+        usersDatabase = database.getReference("users");
+        bloodBanksDatabase = database.getReference("bloodBanks");
+        donationsDatabase = database.getReference("donations");
+        aquiresDatabase = database.getReference("aquires");
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
@@ -146,9 +159,19 @@ public class BloodBankSignUp extends Fragment implements View.OnClickListener{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
+                            /*DatabaseReference users = database.getReference("users").child(task.getResult().getUser().getUid().toString());
+                            User newuser = new User(users.getKey(), mailId, new ArrayList<String>(Arrays.asList("dummy"))
+                                    ,new ArrayList<String>(Arrays.asList("dummy")),
+                                    new ArrayList<String>(Arrays.asList("dummy"))
+                                    , 0);
+                            users.setValue(newuser);*/
+                            //profile activity
                             Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
-
-                            startActivity(new Intent(getContext(),UserActivity.class));
+                            bankId = mAuth.getCurrentUser().getUid();
+                            BloodStats bloodStats = new BloodStats(0,0,0,0,0,0,0,0);
+                            BloodBank bloodBank = new BloodBank("IIIT",bloodStats,donations,987456321,SignupActivity.latitude,SignupActivity.longitude,addressET.getText().toString(),cityET.getText().toString(),stateET.getText().toString());
+                            bloodBanksDatabase.child(bankId).setValue(bloodBank);
+                            startActivity(new Intent(getContext(),MainActivity.class));
                         }
                         else{
                             Toast.makeText(getContext(),"Something happenned",Toast.LENGTH_SHORT).show();

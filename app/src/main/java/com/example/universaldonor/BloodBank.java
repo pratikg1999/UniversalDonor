@@ -1,10 +1,12 @@
 package com.example.universaldonor;
 
+import java.util.ArrayList;
+
 public class BloodBank {
 
     private String BankName;
     private BloodStats bloodStats;
-    private Donations donations;
+    ArrayList<String> donations;
     private long mobileNumber;
     private double latitude;
     private double longitude;
@@ -12,23 +14,14 @@ public class BloodBank {
     private String state;
     private String address;
 
-    public BloodBank(String bankName, BloodStats bloodStats, Donations donations, long mobileNumber, double latitude, double longitude, String city, String state, String address) {
-        BankName = bankName;
+    public BloodBank(String bankName, BloodStats bloodStats, ArrayList<String> donations, long mobileNumber, double latitude, double longitude, String address, String city, String state) {
+        this.BankName = bankName;
         this.bloodStats = bloodStats;
         this.donations = donations;
         this.mobileNumber = mobileNumber;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.city = city;
-        this.state = state;
         this.address = address;
-    }
-
-    public BloodBank(String bankName, BloodStats bloodStats, double latitude, double longitude, String city, String state) {
-        BankName = bankName;
-        this.bloodStats = bloodStats;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.city = city;
         this.state = state;
     }
@@ -41,7 +34,7 @@ public class BloodBank {
         return bloodStats;
     }
 
-    public Donations getDonations() {
+    public ArrayList<String> getDonations() {
         return donations;
     }
 
@@ -57,15 +50,15 @@ public class BloodBank {
         return longitude;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public String getCity() {
         return city;
     }
 
     public String getState() {
         return state;
-    }
-
-    public String getAddress() {
-        return address;
     }
 }

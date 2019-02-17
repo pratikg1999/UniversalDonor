@@ -19,13 +19,18 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="8dp"
             android:hint="email" />
+
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="password"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="8dp"
             android:inputType="textPassword" />
 
         <Button
@@ -40,8 +45,9 @@
             android:id="@+id/signUpArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Signup"
+            android:text="Create new acccount. Signup"
             android:textColor="#2B82D9"
+            android:layout_marginTop="7dp"
             android:textAlignment="center"/>
 
     </LinearLayout>
